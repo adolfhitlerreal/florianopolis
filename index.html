@@ -2,8 +2,6 @@
 local killscript = false
 
 local plr = game:GetService("Players").LocalPlayer
-local char = plr.Character
-local root = char.HumanoidRootPart
 
 -- Anti !help
 
@@ -31,7 +29,7 @@ end)
 local tinfo = TweenInfo.new(0.1, Enum.EasingStyle.Linear)
 
 function teleport_player(pos)
-	local twen = game:GetService("TweenService"):Create(root, tinfo, {["CFrame"] = pos})
+	local twen = game:GetService("TweenService"):Create(plr.Character.HumanoidRootPart, tinfo, {["CFrame"] = pos})
 	twen:Play()
 	return twen
 end
@@ -150,7 +148,7 @@ version_.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 version_.FontSize = Enum.FontSize.Size14
 version_.TextSize = 14
 version_.TextColor3 = Color3.fromRGB(255, 255, 255)
-version_.Text = "versão 1.0.1 \"público\""
+version_.Text = "versão 1.1.0 \"público\""
 version_.TextWrapped = true
 version_.Font = Enum.Font.SourceSans
 version_.TextWrap = true
@@ -903,7 +901,7 @@ s,e = pcall(function()
 	prodabtn.MouseButton1Down:Connect(function()
 		prcs = true
 
-		PreviousPosition = root.CFrame
+		PreviousPosition = plr.Character.HumanoidRootPart.CFrame
 
 		local MainTweenRoda = teleport_player(game:GetService("Workspace").Roda.CFrame)
 		MainTweenRoda.Completed:Wait()
@@ -920,15 +918,15 @@ s,e = pcall(function()
 	prodabtn1.MouseButton1Down:Connect(function()
 		prcs = true
 
-		PreviousPosition = root.CFrame
+		PreviousPosition = plr.Character.HumanoidRootPart.CFrame
 
 		local MainTweenDR = teleport_player(game:GetService("Workspace").EntregarRoubo.CFrame)
 		MainTweenDR.Completed:Wait()
 
 		wait(0.1)
-		firetouchinterest(root,game:GetService("Workspace").EntregarRoubo,1)
+		firetouchinterest(plr.Character.HumanoidRootPart,game:GetService("Workspace").EntregarRoubo,1)
 		wait(0.1)
-		firetouchinterest(root,game:GetService("Workspace").EntregarRoubo,0)
+		firetouchinterest(plr.Character.HumanoidRootPart,game:GetService("Workspace").EntregarRoubo,0)
 
 		local AltTween = teleport_player(PreviousPosition)
 		AltTween.Completed:Wait()

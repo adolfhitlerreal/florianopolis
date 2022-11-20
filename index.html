@@ -202,6 +202,8 @@ consolebox.CursorPosition = -1
 consolebox.Font = Enum.Font.Ubuntu
 consolebox.TextXAlignment = Enum.TextXAlignment.Left
 consolebox.Parent = homesl
+consolebox.ClearTextOnFocus = false
+consolebox.TextEditable = false
 
 function homeconsoleprint(text)
 	consolebox.Text = consolebox.Text.. text.."\n"

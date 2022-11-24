@@ -26,10 +26,12 @@ spawn(function()
 			break
 		end
 		for i,v in pairs(game:GetService("Players"):GetPlayers()) do 
+		    s,e = pcall(function()
 			if string.match(v.Character.Passes.PassesTexto.Text,"🛡") then 
 				table.insert(admins, v)
 				print("ADMIN ENCONTRADO : "..v.Name.." "..v.Character.Passes.PassesTexto.Text)
 			end
+		    end)
 		end
 		if #admins > 0 then
 			local sairdojogo = messagebox(string.format("%s admin(s) foram encontrado no seu jogo, Sair?", #admins), "AVISO",4)
@@ -165,7 +167,7 @@ version_.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 version_.FontSize = Enum.FontSize.Size14
 version_.TextSize = 14
 version_.TextColor3 = Color3.fromRGB(255, 255, 255)
-version_.Text = "versão 1.2.3 \"público\""
+version_.Text = "versão 1.2.3a \"público\""
 version_.TextWrapped = true
 version_.Font = Enum.Font.SourceSans
 version_.TextWrap = true

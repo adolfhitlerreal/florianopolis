@@ -1,6 +1,6 @@
 --- Player
 local killscript = false
-
+local admins = {}
 local plr = game:GetService("Players").LocalPlayer
 
 -- Anti !help
@@ -8,20 +8,26 @@ local plr = game:GetService("Players").LocalPlayer
 local event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents
 event.OnMessageDoneFiltering.OnClientEvent:Connect(function(msg)
     if not killscript then 
-    if string.match(msg.Message, "^!help") then
-        local r = messagebox(string.format("Usuario %s chamou um admin! Sair?", msg.FromSpeaker), "AVISO", 4)
-        if r == 6 then 
-            plr:Kick("Você foi expulso para evitar administradores.")
-        end
-    elseif string.match(msg.Message, ":jail "..plr.Name) or string.match(msg.Message, ":jail "..plr.DisplayName) then 
+    if string.match(msg.Message, ":jail "..plr.Name) or string.match(msg.Message, ":jail "..plr.DisplayName) then 
         local r = messagebox(string.format("Admin %s usou o comando :jail em voce. Sair?", msg.FromSpeaker), "AVISO", 4)
         if r == 6 then 
-            plr:Kick("Você foi expulso para evitar administradores.")
+            plr:Kick("Você foi expulso para evitar :jail de administradores.")
         end
     end
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do 
+    if string.match(v.Character.Passes.PassesTexto.Text,"🛡") then 
+        table.insert(admins, v)
+        print("ADMIN ENCONTRADO : "..v.Name.." "..v.Character.Passes.PassesTexto.Text)
+    end
+end
     end
 end)
-
+if table.len(admins) > 0 then
+    local sairdojogo = messagebox(string.format("%s admin(s) foram encontrado no seu jogo, Sair?", table.len(admins)), "AVISO",4)
+    if sairdojogo == 6 then 
+        plr:Kick("Você foi expulso para evitar :jail de administradores.")
+    end
+end
 --- Functions 
 
 -- Teleport Function
@@ -148,7 +154,7 @@ version_.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 version_.FontSize = Enum.FontSize.Size14
 version_.TextSize = 14
 version_.TextColor3 = Color3.fromRGB(255, 255, 255)
-version_.Text = "versão 1.1.0 \"público\""
+version_.Text = "versão 1.2.0 \"público\""
 version_.TextWrapped = true
 version_.Font = Enum.Font.SourceSans
 version_.TextWrap = true

@@ -22,8 +22,8 @@ event.OnMessageDoneFiltering.OnClientEvent:Connect(function(msg)
 end
     end
 end)
-if table.len(admins) > 0 then
-    local sairdojogo = messagebox(string.format("%s admin(s) foram encontrado no seu jogo, Sair?", table.len(admins)), "AVISO",4)
+if #admins > 0 then
+    local sairdojogo = messagebox(string.format("%s admin(s) foram encontrado no seu jogo, Sair?", #admins), "AVISO",4)
     if sairdojogo == 6 then 
         plr:Kick("Você foi expulso para evitar :jail de administradores.")
     end
@@ -154,7 +154,7 @@ version_.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 version_.FontSize = Enum.FontSize.Size14
 version_.TextSize = 14
 version_.TextColor3 = Color3.fromRGB(255, 255, 255)
-version_.Text = "versão 1.2.0 \"público\""
+version_.Text = "versão 1.2.1 \"público\""
 version_.TextWrapped = true
 version_.Font = Enum.Font.SourceSans
 version_.TextWrap = true

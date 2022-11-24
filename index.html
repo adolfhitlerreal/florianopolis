@@ -1,3 +1,4 @@
+<html><body><pre>
 if not game:IsLoaded() then game.Loaded:Wait() end
 --- Player
 local killscript = false
@@ -8,27 +9,34 @@ local plr = game:GetService("Players").LocalPlayer
 
 local event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents
 event.OnMessageDoneFiltering.OnClientEvent:Connect(function(msg)
-    if not killscript then 
-    if string.match(msg.Message, ":jail "..plr.Name) or string.match(msg.Message, ":jail "..plr.DisplayName) then 
-        local r = messagebox(string.format("Admin %s usou o comando :jail em voce. Sair?", msg.FromSpeaker), "AVISO", 4)
-        if r == 6 then 
-            plr:Kick("Você foi expulso para evitar :jail de administradores.")
-        end
-    end
-    for i,v in pairs(game:GetService("Players"):GetPlayers()) do 
-    if string.match(v.Character.Passes.PassesTexto.Text,"🛡") then 
-        table.insert(admins, v)
-        print("ADMIN ENCONTRADO : "..v.Name.." "..v.Character.Passes.PassesTexto.Text)
-    end
-end
-    end
+	if not killscript then 
+		if string.match(msg.Message, ":jail "..plr.Name) or string.match(msg.Message, ":jail "..plr.DisplayName) then 
+			local r = messagebox(string.format("Admin %s usou o comando :jail em voce. Sair?", msg.FromSpeaker), "AVISO", 4)
+			if r == 6 then 
+				plr:Kick("Você foi expulso para evitar :jail de administradores.")
+			end
+		end
+	end
 end)
-if #admins > 0 then
-    local sairdojogo = messagebox(string.format("%s admin(s) foram encontrado no seu jogo, Sair?", #admins), "AVISO",4)
-    if sairdojogo == 6 then 
-        plr:Kick("Você foi expulso para evitar :jail de administradores.")
-    end
-end
+spawn(function()
+	while wait(1) do
+		if killscript then
+			break
+		end
+		for i,v in pairs(game:GetService("Players"):GetPlayers()) do 
+			if string.match(v.Character.Passes.PassesTexto.Text,"🛡") then 
+				table.insert(admins, v)
+				print("ADMIN ENCONTRADO : "..v.Name.." "..v.Character.Passes.PassesTexto.Text)
+			end
+		end
+		if #admins > 0 then
+			local sairdojogo = messagebox(string.format("%s admin(s) foram encontrado no seu jogo, Sair?", #admins), "AVISO",4)
+			if sairdojogo == 6 then 
+				plr:Kick("Você foi expulso para evitar :jail de administradores.")
+			end
+		end
+	end
+end)
 --- Functions 
 
 -- Teleport Function
@@ -155,7 +163,7 @@ version_.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 version_.FontSize = Enum.FontSize.Size14
 version_.TextSize = 14
 version_.TextColor3 = Color3.fromRGB(255, 255, 255)
-version_.Text = "versão 1.2.2 \"público\""
+version_.Text = "versão 1.2.3 \"público\""
 version_.TextWrapped = true
 version_.Font = Enum.Font.SourceSans
 version_.TextWrap = true
@@ -771,7 +779,7 @@ credit.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 credit.FontSize = Enum.FontSize.Size14
 credit.TextSize = 14
 credit.TextColor3 = Color3.fromRGB(255, 255, 255)
-credit.Text = "criador : tipo_asombroso"
+credit.Text = "criador : trollo_v3"
 credit.TextWrapped = true
 credit.Font = Enum.Font.SourceSans
 credit.TextWrap = true
@@ -822,7 +830,7 @@ min_btn.Parent = dragger
 --- Script 
 s,e = pcall(function()
 	close_btn.MouseButton1Down:Connect(function()
-	    killscript = true
+		killscript = true
 		florianopolis:Destroy()
 		script.Disabled = true
 		script:Destroy()
@@ -849,7 +857,7 @@ s,e = pcall(function()
 		local uesp = loadstring(game:HttpGet("https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua"))
 		local s1,e1 = pcall(uesp)
 		if not s1 and e1 then 
-		    for i,v in pairs(slection:GetChildren()) do 
+			for i,v in pairs(slection:GetChildren()) do 
 				v.Visible = false
 			end
 			homesl.Visible = true
@@ -968,7 +976,7 @@ s,e = pcall(function()
 	assign_coord(pftinp, CFrame.new(404, 33, -760))
 	assign_coord(pfextp, CFrame.new(342, 31, -751))
 	assign_coord(ljcartp, CFrame.new(-123, 11, -64))
--- Museu Interior, Museu Exterior
+	-- Museu Interior, Museu Exterior
 	homeconsoleprint("Script carregado com sucesso")
 end)
 
@@ -986,3 +994,5 @@ if not s and e then
 	script.Disabled = true
 	script:Destroy()
 end
+
+	</pre></body></html>
